@@ -2,6 +2,18 @@ import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, ExternalLink, Github } from "lucide-react"
 import Link from "next/link"
+import { notFound } from "next/navigation"
+
+// Pre-render a page per project at build time instead of rendering on demand.
+export function generateStaticParams() {
+  return Object.keys(projectData).map((id) => ({ id }))
+}
+
+// Only the ids above exist. Without this, Next still renders unknown ids on
+// demand and notFound() produces a soft 404 - the not-found shell served with
+// HTTP 200, which search engines treat as a real page. dynamicParams: false
+// makes an unknown project a genuine 404.
+export const dynamicParams = false
 
 const projectData: Record<string, any> = {
   watchpact: {
@@ -9,8 +21,22 @@ const projectData: Record<string, any> = {
     category: "SOCIAL_PLATFORM",
     description: "Modern, responsive web application for creating, managing, and sharing movie and TV show watchlists with friends and family",
     longDescription:
-      "WatchPact is a comprehensive social platform built with Angular 16 that revolutionizes how people discover, organize, and share their entertainment preferences. Leveraging The Movie Database (TMDB) API, it provides access to millions of movies and TV shows with detailed information, trailers, and streaming availability. The platform features a sophisticated watchlist system that allows users to create multiple curated lists, share them with friends, and collaborate on viewing plans. Built with modern web technologies including TypeScript, Firebase, and RxJS, WatchPact offers a seamless, responsive experience across all devices with offline capabilities through Progressive Web App features.",
-    tech: ["Angular 16", "TypeScript 5.1", "Firebase", "TMDB API", "Bootstrap 5", "RxJS", "Elf State Management", "Google OAuth"],
+      "WatchPact is a full-stack social platform for building and sharing movie and TV watchlists. An Angular 16 frontend talks to a .NET 8 ASP.NET Core API that I wrote and run in Docker, which proxies The Movie Database for catalogue data and persists watchlists in MongoDB Atlas. Search is not a naive substring match: a self-hosted Meilisearch instance holds a 300,000-document catalogue of films, series and people, rebuilt nightly from the TMDB export by a Node indexer on a systemd timer, which is what makes a misspelled query still find the right title. Sign-in is Google OAuth against a cookie-backed scheme, sharing works through per-watchlist tokens, and ownership is enforced server-side so only an owner can delete. It runs as two independent environments - production and test, each with its own database and TLS certificate - with a sync service that copies production into test behind a guard that refuses to write anywhere else. A Capacitor 7 wrapper packages the same frontend as an Android app.",
+    tech: [
+      "Angular 16",
+      "TypeScript 5.1",
+      ".NET 8 / ASP.NET Core",
+      "C#",
+      "MongoDB Atlas",
+      "Meilisearch",
+      "TMDB API",
+      "Docker",
+      "Google OAuth",
+      "Capacitor 7 (Android)",
+      "Bootstrap 5",
+      "RxJS",
+      "Elf State Management",
+    ],
     features: [
       "Comprehensive search and discovery using TMDB API with advanced filtering by genre, year, and rating",
       "Multiple watchlist creation with customizable names and shareable links for collaborative viewing",
@@ -24,13 +50,13 @@ const projectData: Record<string, any> = {
       "Smart categorization and organization with auto-sorting by media type",
     ],
     metrics: {
-      "Tech Stack": "Angular 16",
-      "API Integration": "TMDB",
-      "Authentication": "Google OAuth",
+      "Search Index": "300k documents",
+      Environments: "prod + test",
+      Platforms: "web + Android",
     },
     links: {
       live: "https://bbprojet.dev",
-      github: "https://github.com/cafenombre/bbprojet",
+      github: "https://github.com/BBProjet/bbprojet",
     },
   },
   caracheck: {
@@ -86,93 +112,92 @@ const projectData: Record<string, any> = {
       live: "https://daily.bbprojet.dev",
     },
   },
-  "neural-commerce": {
-    title: "NEURAL_COMMERCE",
-    category: "E-COMMERCE",
-    description: "AI-powered shopping platform with predictive analytics and personalized recommendations",
+  "project-list": {
+    title: "PROJECTLIST",
+    category: "TASK_TRACKER",
+    description: "A deliberately minimal Jira: projects, a three-column board, and nothing you did not ask for",
     longDescription:
-      "Neural Commerce represents the future of online shopping, leveraging advanced machine learning algorithms to predict user preferences and deliver hyper-personalized shopping experiences. The platform processes millions of data points in real-time to optimize product recommendations, pricing strategies, and inventory management.",
-    tech: ["Next.js", "TensorFlow", "PostgreSQL", "Redis", "Stripe"],
+      "ProjectList is a task tracker built against a strict constraint - stay small. Tasks move across To Do, In Progress and Done on a kanban board, by drag-and-drop or by arrow buttons, because HTML5 drag events are unreliable on touch screens and a board you cannot use on a phone is not finished. Each task carries at most one flag - minor, important or blocked - rendered as the card's left edge so a board reads at a glance. Finished work is archived off the board in one click and kept on a separate history page with filters, search and restore. Two design choices are deliberate departures from the sibling project: tasks are keyed by MongoDB's native ObjectId rather than a hand-rolled counter, avoiding a read-then-write race on insert, and updates are PATCH with explicit undefined checks rather than a document replace, because replacing a document against a non-nullable boolean is how a silent data-loss bug gets written.",
+    tech: [
+      "Angular 19",
+      "TypeScript 5.7",
+      "Express 5",
+      "Mongoose 8",
+      "MongoDB Atlas",
+      "Node.js 20",
+      "PM2",
+      "Nginx",
+      "Let's Encrypt",
+    ],
     features: [
-      "Real-time product recommendations using neural networks",
-      "Dynamic pricing optimization based on market trends",
-      "Predictive inventory management system",
-      "Seamless checkout with multiple payment gateways",
-      "Advanced analytics dashboard for merchants",
+      "Three-column kanban board with drag-and-drop plus arrow-button fallback that stays usable on touch screens",
+      "Per-task flags (minor, important, blocked) shown as a coloured card edge and badge",
+      "Projects as first-class records, so an empty project can exist before it has any tasks",
+      "One-click bulk archive of the Done column, keeping finished work out of the way but not deleted",
+      "Separate history page covering every task ever created, with filters, search, restore and permanent delete",
+      "Board state held in URL query parameters, so a filtered view is shareable and survives a refresh",
+      "Optimistic updates that revert and surface an inline error when a request fails",
+      "Two-step confirmation before any destructive action, showing how many tasks a project delete would take",
+      "Schema migration script converting the original boolean field to a three-state status, idempotent and with a dry-run mode",
+      "25 unit tests covering status transitions, optimistic reverts, flags, drag-drop and the archive flow",
     ],
     metrics: {
-      "Conversion Rate": "+45%",
-      "Load Time": "< 1s",
-      "User Satisfaction": "98%",
+      "Unit Tests": "25 passing",
+      Collections: "projects + tasks",
+      Binding: "loopback only",
+    },
+    links: {
+      live: "https://project.bbprojet.dev",
+      github: "https://github.com/cafenombre/project-list",
     },
   },
-  "quantum-dashboard": {
-    title: "QUANTUM_DASHBOARD",
-    category: "DATA_VISUALIZATION",
-    description: "Real-time analytics dashboard with quantum-inspired data processing algorithms",
+  glotech: {
+    title: "GLOTECH",
+    category: "PORTFOLIO",
+    description: "This site. A self-hosted portfolio on Next.js 16, built and deployed on my own infrastructure",
     longDescription:
-      "Quantum Dashboard transforms complex data streams into actionable insights through cutting-edge visualization techniques. Built with performance in mind, it handles massive datasets with ease, providing real-time updates and interactive exploration capabilities.",
-    tech: ["React", "D3.js", "WebGL", "WebSocket", "Python"],
+      "GloTech is the site you are reading, and it is self-hosted rather than pushed to a platform - it runs as a Node process bound to loopback on my own VPS, behind nginx with a Let's Encrypt certificate, supervised by PM2 and restored automatically on reboot. The resume page generates a PDF client-side with jsPDF, so there is no server round trip and no document to keep in sync. The interface is built from Radix primitives styled with Tailwind 4, which keeps the neon treatment consistent without hand-rolling accessibility behaviour for every menu and dialog.",
+    tech: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript 5",
+      "Tailwind CSS 4",
+      "Radix UI",
+      "jsPDF",
+      "Node.js 20",
+      "PM2",
+      "Nginx",
+      "Let's Encrypt",
+    ],
     features: [
-      "Real-time data streaming and visualization",
-      "Interactive 3D data representations",
-      "Custom query builder with natural language processing",
-      "Automated anomaly detection and alerts",
-      "Export capabilities in multiple formats",
+      "App Router with statically pre-rendered pages and a dynamic route per project",
+      "Client-side PDF resume generation with jsPDF, no server round trip",
+      "Accessible menus, dialogs and navigation built on Radix primitives",
+      "Neon design system in Tailwind 4 using CSS custom properties",
+      "Self-hosted behind nginx on loopback, so the reverse proxy is the only route in",
+      "Supervised by PM2 with a systemd unit, so it comes back on its own after a reboot",
     ],
     metrics: {
-      "Data Points/sec": "1M+",
-      "Response Time": "< 100ms",
-      Uptime: "99.99%",
+      Framework: "Next.js 16",
+      Hosting: "self-hosted VPS",
+      Advisories: "0",
     },
-  },
-  "cyber-auth": {
-    title: "CYBER_AUTH",
-    category: "SECURITY",
-    description: "Next-generation authentication system with biometric integration and zero-trust architecture",
-    longDescription:
-      "Cyber Auth redefines security standards with a comprehensive authentication solution that combines biometric verification, multi-factor authentication, and zero-trust principles. Designed for enterprise-scale deployments, it provides uncompromising security without sacrificing user experience.",
-    tech: ["Node.js", "Redis", "WebAuthn", "PostgreSQL", "Docker"],
-    features: [
-      "Biometric authentication (fingerprint, face recognition)",
-      "Hardware security key support",
-      "Adaptive risk-based authentication",
-      "Session management with automatic threat detection",
-      "Comprehensive audit logging and compliance reporting",
-    ],
-    metrics: {
-      "Auth Speed": "< 500ms",
-      "Security Score": "A+",
-      "Failed Attacks": "0",
-    },
-  },
-  "synth-api": {
-    title: "SYNTH_API",
-    category: "BACKEND",
-    description: "High-performance API gateway with intelligent routing and auto-scaling capabilities",
-    longDescription:
-      "Synth API is a next-generation API gateway built for extreme performance and reliability. It intelligently routes requests, automatically scales based on demand, and provides comprehensive monitoring and analytics. Perfect for microservices architectures and high-traffic applications.",
-    tech: ["Go", "Kubernetes", "gRPC", "Prometheus", "Grafana"],
-    features: [
-      "Intelligent request routing with load balancing",
-      "Automatic horizontal scaling based on metrics",
-      "Built-in rate limiting and DDoS protection",
-      "Real-time monitoring and alerting",
-      "API versioning and backward compatibility",
-    ],
-    metrics: {
-      "Requests/sec": "100K+",
-      Latency: "< 10ms",
-      Availability: "99.99%",
+    links: {
+      live: "https://glotech.bbprojet.dev",
+      github: "https://github.com/cafenombre/glotech",
     },
   },
 }
 
-export default function ProjectDetailPage({ params }: { params: { id: string } }) {
-  const project = projectData[params.id]
+// Next.js 16 makes route params async. Reading params.id synchronously silently
+// yields undefined, so every project fell through to the not-found branch while
+// still returning HTTP 200 - broken in a way a status-code check cannot see.
+export default async function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const project = projectData[id]
 
   if (!project) {
-    return <div>Project not found</div>
+    notFound()
   }
 
   return (

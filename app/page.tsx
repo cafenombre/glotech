@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Zap, Code, Cpu, Terminal } from "lucide-react"
+import { ArrowRight, Code, Terminal, Database, Server } from "lucide-react"
 
 export default function HomePage() {
   return (
@@ -30,8 +30,8 @@ export default function HomePage() {
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-mono">
-              Cutting-edge software solutions powered by advanced algorithms and cybernetic precision. Welcome to the
-              next generation of digital innovation.
+              Full-stack developer. Angular and .NET on the front and back, MongoDB underneath, and everything shipped
+              to a Linux box I run myself: Docker, nginx, TLS and all.
             </p>
 
             <div className="flex gap-4 justify-center pt-8">
@@ -76,13 +76,28 @@ export default function HomePage() {
             {[
               {
                 icon: Code,
-                title: "WEB_DEV",
-                desc: "Full-stack applications with modern frameworks",
+                title: "FRONTEND",
+                desc: "Angular 16 to 19, React 19 and Next.js 16 in TypeScript. Standalone components, RxJS, Tailwind.",
                 color: "neon-pink",
               },
-              { icon: Cpu, title: "AI_INTEGRATION", desc: "Machine learning and neural networks", color: "neon-blue" },
-              { icon: Terminal, title: "BACKEND_SYSTEMS", desc: "Scalable server architecture", color: "neon-cyan" },
-              { icon: Zap, title: "OPTIMIZATION", desc: "Performance-driven solutions", color: "neon-purple" },
+              {
+                icon: Terminal,
+                title: "BACKEND_APIS",
+                desc: ".NET 8 in C# and Node with Express. REST APIs, Google OAuth, token-based sharing, server-side authorisation.",
+                color: "neon-blue",
+              },
+              {
+                icon: Database,
+                title: "DATA_AND_SEARCH",
+                desc: "MongoDB with Mongoose and the .NET driver, scoped per-app database users, and self-hosted Meilisearch for typo-tolerant search.",
+                color: "neon-cyan",
+              },
+              {
+                icon: Server,
+                title: "DEPLOY_AND_OPS",
+                desc: "My own Debian VPS: Docker Compose, nginx, Let's Encrypt, PM2, systemd timers and nightly database backups.",
+                color: "neon-purple",
+              },
             ].map((service, i) => (
               <div
                 key={i}
@@ -110,9 +125,9 @@ export default function HomePage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-3 gap-12 max-w-4xl mx-auto">
             {[
-              { value: "50+", label: "PROJECTS_DEPLOYED", color: "neon-pink" },
-              { value: "99.9%", label: "UPTIME_RATE", color: "neon-blue" },
-              { value: "24/7", label: "SYSTEM_ACTIVE", color: "neon-cyan" },
+              { value: "5", label: "APPS_IN_PRODUCTION", color: "neon-pink" },
+              { value: "7", label: "DOMAINS_OVER_HTTPS", color: "neon-blue" },
+              { value: "1", label: "VPS_I_RUN_MYSELF", color: "neon-cyan" },
             ].map((stat, i) => (
               <div key={i} className="text-center">
                 <div className={`text-5xl md:text-6xl font-bold font-sans text-${stat.color} neon-text mb-2`}>

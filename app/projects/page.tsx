@@ -7,51 +7,76 @@ const projects = [
     id: "watchpact",
     title: "WATCHPACT",
     category: "SOCIAL_PLATFORM",
-    description: "Modern, responsive web application for creating, managing, and sharing movie and TV show watchlists with friends and family. Features comprehensive TMDB API integration, collaborative lists, Google OAuth authentication, and a beautiful dark/light theme system.",
-    tech: ["Angular 16", "TypeScript", "Firebase", "TMDB API", "Bootstrap 5", "RxJS", "Elf State Management"],
+    description:
+      "Full-stack platform for building and sharing movie and TV watchlists. Angular front end against a .NET 8 API I wrote and run in Docker, with watchlists in MongoDB Atlas and a self-hosted Meilisearch index of 300,000 titles and people so a misspelled query still finds the right film. Google OAuth, share-by-token, separate production and test environments, and an Android build via Capacitor.",
+    tech: [
+      "Angular 16",
+      ".NET 8",
+      "C#",
+      "MongoDB Atlas",
+      "Meilisearch",
+      "Docker",
+      "TMDB API",
+      "Google OAuth",
+      "Capacitor",
+    ],
     color: "neon-pink",
     featured: true,
     links: {
       live: "https://bbprojet.dev",
-      github: "https://github.com/cafenombre/bbprojet",
+      github: "https://github.com/BBProjet/bbprojet",
+    },
+  },
+  {
+    id: "project-list",
+    title: "PROJECTLIST",
+    category: "TASK_TRACKER",
+    description:
+      "A deliberately minimal Jira. Three-column kanban board with drag-and-drop plus button controls that still work on a phone, per-task flags rendered as the card edge, one-click archiving of finished work, and a separate history page with search and restore. Angular 19 on Express and Mongoose, 25 unit tests.",
+    tech: ["Angular 19", "Express 5", "Mongoose 8", "MongoDB Atlas", "TypeScript", "PM2", "Nginx"],
+    color: "neon-cyan",
+    featured: true,
+    links: {
+      live: "https://project.bbprojet.dev",
+      github: "https://github.com/cafenombre/project-list",
+    },
+  },
+  {
+    id: "daily-picking",
+    title: "DAILY_PICKING",
+    category: "TEAM_MANAGEMENT",
+    description:
+      "Rotation system deciding who runs the daily stand-up. Fixed order so nobody repeats until everyone has had a turn, with postponement logic that remembers an absent member and schedules them straight after their substitute. Angular 19 on Express and MongoDB, in daily use by a team of 13 with several hundred rotations recorded.",
+    tech: ["Angular 19", "Node.js 20", "Express", "MongoDB Atlas", "Mongoose", "PM2", "Nginx", "anime.js"],
+    color: "neon-purple",
+    featured: true,
+    links: {
+      live: "https://daily.bbprojet.dev",
+      github: "https://github.com/cafenombre/daily-picking",
     },
   },
   {
     id: "caracheck",
     title: "CARACHECK",
     category: "MOBILE_APP",
-    description: "Beautiful cross-platform mobile checklist and task management application built with React Native and Expo. Features customizable color schemes, push notifications, date-based organization, and an elegant gradient UI for managing daily routines, work tasks, and shopping lists.",
-    tech: ["React Native", "Expo", "TypeScript", "Push Notifications", "React Navigation", "Expo Router"],
+    description:
+      "Cross-platform checklist and task app for iOS, Android and web, built with React Native and Expo. Customisable colour themes, scheduled push-notification reminders, and date-based organisation for routines, work tasks and shopping lists.",
+    tech: ["React Native", "Expo", "TypeScript", "Expo Router", "React Navigation", "Push Notifications"],
     color: "neon-blue",
     featured: true,
   },
   {
-    id: "daily-picking",
-    title: "DAILY_PICKING",
-    category: "TEAM_MANAGEMENT",
-    description: "Daily meeting animator rotation system with smart absence handling and celebration animations. Features fixed-order rotation ensuring fair distribution, postponement logic for absent members, MongoDB persistence, and engaging confetti animations to celebrate participation.",
-    tech: ["Angular 19", "Node.js", "Express", "MongoDB Atlas", "PM2", "Nginx", "anime.js", "RxJS"],
-    color: "neon-purple",
-    featured: true,
+    id: "glotech",
+    title: "GLOTECH",
+    category: "PORTFOLIO",
+    description:
+      "This site. Next.js 16 with client-side PDF resume generation, self-hosted on my own VPS behind nginx rather than pushed to a platform — bound to loopback, TLS from Let's Encrypt, supervised by PM2 and restored automatically on reboot.",
+    tech: ["Next.js 16", "React 19", "Tailwind CSS 4", "Radix UI", "jsPDF", "PM2", "Nginx"],
+    color: "neon-cyan",
     links: {
-      live: "https://daily.bbprojet.dev",
+      live: "https://glotech.bbprojet.dev",
+      github: "https://github.com/cafenombre/glotech",
     },
-  },
-  {
-    id: "neural-commerce",
-    title: "NEURAL_COMMERCE",
-    category: "E-COMMERCE",
-    description: "AI-powered shopping platform with predictive analytics and personalized recommendations",
-    tech: ["Next.js", "TensorFlow", "PostgreSQL"],
-    color: "neon-cyan",
-  },
-  {
-    id: "quantum-dashboard",
-    title: "QUANTUM_DASHBOARD",
-    category: "DATA_VISUALIZATION",
-    description: "Real-time analytics dashboard with quantum-inspired data processing algorithms",
-    tech: ["React", "D3.js", "WebGL"],
-    color: "neon-cyan",
   },
 ]
 
@@ -70,8 +95,8 @@ export default function ProjectsPage() {
                 <span className="text-neon-pink neon-text">PROJECTS</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed font-mono">
-                A collection of cutting-edge applications showcasing advanced development techniques and innovative
-                solutions.
+                Things I have actually built and run. Four of the five are live right now on a server I administer
+                myself, so every link below points at something you can open.
               </p>
             </div>
 
