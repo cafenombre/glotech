@@ -48,7 +48,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
 
                 return (
                   <Link key={id} href={localePath(locale, "projects", id)} className="group">
-                    <div className="p-8 border-2 border-border hover:border-neon-pink transition-all hover:neon-border-subtle bg-card relative overflow-hidden">
+                    <div className="p-8 border-2 border-border hover:border-neon-pink transition-all bg-card relative overflow-hidden">
                       <div className="absolute top-0 right-0 w-12 h-12 border-r-2 border-t-2 border-neon-pink/20 group-hover:border-neon-pink transition-colors" />
 
                       <div className="flex items-start justify-between mb-4">
@@ -56,7 +56,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
                           <div className="text-sm font-mono text-muted-foreground mb-2 tracking-wider">
                             {`[${String(i + 1).padStart(2, "0")}]`} {text.category}
                           </div>
-                          <h2 className="text-3xl font-bold font-sans text-neon-pink group-hover:neon-text-subtle transition-all tracking-tight">
+                          <h2 className="text-3xl font-bold font-sans text-neon-pink transition-all tracking-tight">
                             {meta.title}
                           </h2>
                         </div>

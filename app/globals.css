@@ -86,24 +86,28 @@
     @apply bg-background text-foreground;
   }
 
+  /* Neon palette, no halo.
+     The glow (text-shadow / box-shadow bloom) was removed on purpose: it now
+     survives only on the GLOTECH wordmark, via .logo-glow below. The theme is
+     still neon - saturated colours on black, heavy borders, mono type - it
+     just does not bloom, the way daily.bbprojet.dev handles the same palette.
+
+     These two keep their weight and tracking, which is what makes the type
+     read as signage. Only the halo is gone. The matching .neon-border rules
+     were deleted outright: the borders themselves come from Tailwind's
+     border-2 border-neon-*, so those classes had nothing left to contribute. */
   .neon-text {
-    text-shadow: 0 0 3px currentColor, 0 0 6px currentColor, 0 0 12px currentColor;
     font-weight: 700;
     letter-spacing: 0.05em;
   }
 
   .neon-text-subtle {
-    text-shadow: 0 0 2px currentColor, 0 0 4px currentColor, 0 0 8px currentColor;
     font-weight: 600;
   }
 
-  .neon-border {
-    box-shadow: 0 0 3px currentColor, 0 0 6px currentColor, 0 0 12px currentColor, inset 0 0 3px currentColor, inset 0
-      0 6px currentColor;
-  }
-
-  .neon-border-subtle {
-    box-shadow: 0 0 2px currentColor, 0 0 5px currentColor, inset 0 0 2px currentColor;
+  .logo-glow {
+    text-shadow: 0 0 2px currentColor, 0 0 4px currentColor, 0 0 8px currentColor;
+    font-weight: 600;
   }
 
   .grid-pattern {

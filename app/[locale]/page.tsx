@@ -37,7 +37,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="inline-block px-6 py-2 border-2 border-neon-pink rounded-none mb-4 neon-border-subtle">
+            <div className="inline-block px-6 py-2 border-2 border-neon-pink rounded-none mb-4">
               <span className="text-neon-pink font-sans text-sm neon-text-subtle tracking-wider">{t.eyebrow}</span>
             </div>
 
@@ -54,7 +54,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
               <Link href={localePath(locale, "projects")}>
                 <Button
                   size="lg"
-                  className="bg-neon-pink hover:bg-neon-pink/80 text-background font-sans font-bold neon-border group tracking-wide"
+                  className="bg-neon-pink hover:bg-neon-pink/80 text-background font-sans font-bold group tracking-wide"
                 >
                   {t.viewProjects}
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -73,10 +73,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
           </div>
         </div>
 
-        <div className="absolute top-1/4 left-10 w-3 h-3 bg-neon-pink rounded-full animate-pulse shadow-[0_0_20px_currentColor]" />
-        <div className="absolute top-1/3 right-20 w-4 h-4 bg-neon-blue rounded-full animate-pulse delay-75 shadow-[0_0_20px_currentColor]" />
-        <div className="absolute bottom-1/4 left-1/4 w-3 h-3 bg-neon-cyan rounded-full animate-pulse delay-150 shadow-[0_0_20px_currentColor]" />
-        <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-neon-purple rounded-full animate-pulse delay-300 shadow-[0_0_20px_currentColor]" />
+        <div className="absolute top-1/4 left-10 w-3 h-3 bg-neon-pink rounded-full animate-pulse" />
+        <div className="absolute top-1/3 right-20 w-4 h-4 bg-neon-blue rounded-full animate-pulse delay-75" />
+        <div className="absolute bottom-1/4 left-1/4 w-3 h-3 bg-neon-cyan rounded-full animate-pulse delay-150" />
+        <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-neon-purple rounded-full animate-pulse delay-300" />
       </section>
 
       {/* Services Section */}
@@ -92,12 +92,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
             {services.map((service, i) => (
               <div
                 key={i}
-                className="p-6 border-2 border-border bg-card hover:border-neon-pink hover:neon-border-subtle transition-all group relative overflow-hidden"
+                className="p-6 border-2 border-border bg-card hover:border-neon-pink transition-all group relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-8 h-8 border-r-2 border-t-2 border-neon-pink/30 group-hover:border-neon-pink transition-colors" />
 
                 <service.icon
-                  className={`h-12 w-12 text-${service.color} mb-4 group-hover:neon-text-subtle transition-all`}
+                  className={`h-12 w-12 text-${service.color} mb-4 transition-all`}
                 />
                 <h3 className={`text-xl font-sans font-bold mb-2 text-${service.color} tracking-wide`}>
                   {service.title}
@@ -132,7 +132,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         <div className="absolute inset-0 bg-gradient-to-t from-neon-pink/10 to-transparent" />
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center space-y-8 p-12 border-2 border-neon-pink/50 neon-border-subtle relative">
+          <div className="max-w-3xl mx-auto text-center space-y-8 p-12 border-2 border-neon-pink/50 relative">
             <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-neon-pink" />
             <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-neon-pink" />
 
@@ -142,7 +142,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
             <p className="text-xl text-muted-foreground leading-relaxed font-mono">{t.ctaText}</p>
             <Button
               size="lg"
-              className="bg-neon-blue hover:bg-neon-blue/80 text-background font-sans font-bold neon-border tracking-wide"
+              className="bg-neon-blue hover:bg-neon-blue/80 text-background font-sans font-bold tracking-wide"
             >
               {t.ctaButton}
             </Button>

@@ -18,7 +18,7 @@ export default function NotFound() {
       <div className="absolute inset-0 bg-gradient-to-b from-neon-pink/10 via-transparent to-neon-blue/10" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-xl mx-auto text-center space-y-8 p-12 border-2 border-neon-pink/50 neon-border-subtle relative">
+        <div className="max-w-xl mx-auto text-center space-y-8 p-12 border-2 border-neon-pink/50 relative">
           <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-neon-pink" />
           <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-neon-pink" />
 
@@ -31,7 +31,7 @@ export default function NotFound() {
           <Link href={localePath(DEFAULT_LOCALE)}>
             <Button
               size="lg"
-              className="bg-neon-pink hover:bg-neon-pink/80 text-background font-sans font-bold neon-border group tracking-wide"
+              className="bg-neon-pink hover:bg-neon-pink/80 text-background font-sans font-bold group tracking-wide"
             >
               <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
               {dict.notFound.back}

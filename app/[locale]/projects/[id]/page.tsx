@@ -73,17 +73,17 @@ export default async function ProjectDetailPage({
 
             <div className="mb-12">
               <div className="text-sm font-orbitron text-neon-cyan mb-4 tracking-wider">{project.category}</div>
-              <h1 className="text-5xl md:text-7xl font-bold font-orbitron mb-6 text-neon-pink neon-text-strong">
+              <h1 className="text-5xl md:text-7xl font-bold font-orbitron mb-6 text-neon-pink">
                 {meta.title}
               </h1>
               <p className="text-xl text-gray-400 leading-relaxed">{project.tagline}</p>
             </div>
 
-            <div className="mb-12 aspect-video bg-gradient-to-br from-neon-pink/10 to-neon-blue/10 border-2 border-neon-pink/50 neon-border-strong flex items-center justify-center relative overflow-hidden group">
+            <div className="mb-12 aspect-video bg-gradient-to-br from-neon-pink/10 to-neon-blue/10 border-2 border-neon-pink/50 flex items-center justify-center relative overflow-hidden group">
               <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
               <div className="absolute inset-0 scanlines"></div>
               <div className="text-center relative z-10">
-                <div className="text-6xl font-orbitron text-neon-pink neon-text-strong mb-2 group-hover:scale-110 transition-transform">
+                <div className="text-6xl font-orbitron text-neon-pink mb-2 group-hover:scale-110 transition-transform">
                   {meta.title.split("_")[0]}
                 </div>
                 <div className="text-gray-500 font-mono tracking-widest">{dict.projects.preview}</div>
@@ -109,7 +109,7 @@ export default async function ProjectDetailPage({
                 {meta.techFull.map((tech) => (
                   <span
                     key={tech}
-                    className="px-4 py-2 font-mono border-2 border-neon-pink/70 text-neon-pink bg-neon-pink/10 neon-border hover:bg-neon-pink/20 transition-all cursor-default"
+                    className="px-4 py-2 font-mono border-2 border-neon-pink/70 text-neon-pink bg-neon-pink/10 hover:bg-neon-pink/20 transition-all cursor-default"
                   >
                     {tech}
                   </span>
@@ -141,11 +141,11 @@ export default async function ProjectDetailPage({
                 {project.metrics.map((metric) => (
                   <div
                     key={metric.label}
-                    className="p-6 border-2 border-neon-pink/50 bg-black/50 neon-border relative overflow-hidden group hover:border-neon-cyan/70 transition-all"
+                    className="p-6 border-2 border-neon-pink/50 bg-black/50 relative overflow-hidden group hover:border-neon-cyan/70 transition-all"
                   >
                     <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
                     <div className="relative z-10">
-                      <div className="text-3xl font-bold font-orbitron text-neon-pink neon-text-strong mb-2 group-hover:scale-110 transition-transform">
+                      <div className="text-3xl font-bold font-orbitron text-neon-pink mb-2 group-hover:scale-110 transition-transform">
                         {metric.value}
                       </div>
                       <div className="text-sm text-gray-500 font-mono tracking-wider">{metric.label}</div>
@@ -158,7 +158,7 @@ export default async function ProjectDetailPage({
             <div className="flex gap-4">
               {meta.links?.live && (
                 <Link href={meta.links.live} target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-neon-pink hover:bg-neon-pink/80 text-black font-mono font-bold neon-border-strong border-2 border-neon-pink hover:scale-105 transition-transform">
+                  <Button className="bg-neon-pink hover:bg-neon-pink/80 text-black font-mono font-bold border-2 border-neon-pink hover:scale-105 transition-transform">
                     <ExternalLink className="h-4 w-4 mr-2" />
                     {dict.projects.liveDemo}
                   </Button>
@@ -168,7 +168,7 @@ export default async function ProjectDetailPage({
                 <Link href={meta.links.github} target="_blank" rel="noopener noreferrer">
                   <Button
                     variant="outline"
-                    className="border-2 border-neon-blue text-neon-blue hover:bg-neon-blue/20 font-mono bg-black neon-border hover:scale-105 transition-transform font-bold"
+                    className="border-2 border-neon-blue text-neon-blue hover:bg-neon-blue/20 font-mono bg-black hover:scale-105 transition-transform font-bold"
                   >
                     <Github className="h-4 w-4 mr-2" />
                     {dict.projects.viewCode}

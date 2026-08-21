@@ -14,7 +14,7 @@ export function DownloadResumeButton({ locale, label }: { locale: Locale; label:
   return (
     <Button
       onClick={() => generateResumePDF(locale)}
-      className="bg-neon-blue hover:bg-neon-blue/80 text-black font-mono font-bold neon-border-strong border-2 border-neon-blue hover:scale-105 transition-transform"
+      className="bg-neon-blue hover:bg-neon-blue/80 text-black font-mono font-bold border-2 border-neon-blue hover:scale-105 transition-transform"
     >
       <Download className="h-4 w-4 mr-2" />
       {label}

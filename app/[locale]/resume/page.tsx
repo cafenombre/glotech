@@ -44,7 +44,7 @@ export default async function ResumePage({ params }: { params: Promise<{ locale:
               <div className="flex items-start justify-between mb-8 flex-wrap gap-4">
                 <div>
                   <h1 className="text-5xl md:text-7xl font-bold font-orbitron mb-4">
-                    <span className="text-neon-pink neon-text-strong">{cv.name}</span>
+                    <span className="text-neon-pink">{cv.name}</span>
                   </h1>
                   <p className="text-xl text-gray-200 font-mono">{cv.jobTitle}</p>
                 </div>

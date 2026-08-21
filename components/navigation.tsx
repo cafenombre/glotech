@@ -36,8 +36,9 @@ export function Navigation({
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href={localePath(locale)} className="text-2xl font-bold font-sans tracking-tight">
-            <span className="text-neon-pink neon-text-subtle">GLO</span>
-            <span className="text-neon-blue neon-text-subtle">TECH</span>
+            {/* The only glow left on the site. */}
+            <span className="text-neon-pink logo-glow">GLO</span>
+            <span className="text-neon-blue logo-glow">TECH</span>
           </Link>
 
           <div className="flex items-center gap-6 md:gap-8">
@@ -46,7 +47,7 @@ export function Navigation({
                 key={link.key}
                 href={link.href}
                 className={cn(
-                  "font-sans text-sm transition-all hover:text-neon-pink hover:neon-text-subtle tracking-wider font-semibold",
+                  "font-sans text-sm transition-all hover:text-neon-pink tracking-wider font-semibold",
                   link.key === activeKey ? "text-neon-pink neon-text-subtle" : "text-muted-foreground",
                 )}
               >
