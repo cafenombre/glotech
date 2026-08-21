@@ -25,3 +25,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# --- project-specific -------------------------------------------------------
+# Deploy artefact, rebuilt on each deploy
+*-deploy.tar.gz
+
+# Second lockfile: npm is the package manager here, and a stray pnpm-lock.yaml
+# makes Next warn about multiple lockfiles and can confuse installs.
+pnpm-lock.yaml
