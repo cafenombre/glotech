@@ -4,6 +4,88 @@ import { ArrowLeft, ExternalLink, Github } from "lucide-react"
 import Link from "next/link"
 
 const projectData: Record<string, any> = {
+  watchpact: {
+    title: "WATCHPACT",
+    category: "SOCIAL_PLATFORM",
+    description: "Modern, responsive web application for creating, managing, and sharing movie and TV show watchlists with friends and family",
+    longDescription:
+      "WatchPact is a comprehensive social platform built with Angular 16 that revolutionizes how people discover, organize, and share their entertainment preferences. Leveraging The Movie Database (TMDB) API, it provides access to millions of movies and TV shows with detailed information, trailers, and streaming availability. The platform features a sophisticated watchlist system that allows users to create multiple curated lists, share them with friends, and collaborate on viewing plans. Built with modern web technologies including TypeScript, Firebase, and RxJS, WatchPact offers a seamless, responsive experience across all devices with offline capabilities through Progressive Web App features.",
+    tech: ["Angular 16", "TypeScript 5.1", "Firebase", "TMDB API", "Bootstrap 5", "RxJS", "Elf State Management", "Google OAuth"],
+    features: [
+      "Comprehensive search and discovery using TMDB API with advanced filtering by genre, year, and rating",
+      "Multiple watchlist creation with customizable names and shareable links for collaborative viewing",
+      "Detailed media pages with cast, crew, trailers, ratings, and streaming provider information",
+      "Google OAuth authentication with personalized user profiles and preferences",
+      "Dark/light theme toggle with smooth transitions and user preference persistence",
+      "Progressive Web App capabilities with offline support and app-like experience",
+      "Real-time collaboration features for shared watchlists with multiple users",
+      "Person profiles exploring complete filmographies of actors and directors",
+      "Responsive design optimized for desktop, tablet, and mobile devices",
+      "Smart categorization and organization with auto-sorting by media type",
+    ],
+    metrics: {
+      "Tech Stack": "Angular 16",
+      "API Integration": "TMDB",
+      "Authentication": "Google OAuth",
+    },
+    links: {
+      live: "https://bbprojet.dev",
+      github: "https://github.com/cafenombre/bbprojet",
+    },
+  },
+  caracheck: {
+    title: "CARACHECK",
+    category: "MOBILE_APP",
+    description: "Beautiful cross-platform mobile checklist and task management application built with React Native and Expo",
+    longDescription:
+      "CaraCheck is a modern, elegant task management application designed for iOS, Android, and web platforms using React Native and Expo. The app provides a beautiful, intuitive interface for organizing daily routines, work tasks, shopping lists, and personal projects. With customizable color schemes featuring soft gradients, users can personalize their checklists for visual organization. The app includes advanced features like push notifications for task reminders, date-based organization to plan ahead, and a smooth, responsive UI built with React Navigation and Expo Router. CaraCheck supports haptic feedback for enhanced user interaction and leverages Expo's powerful ecosystem for seamless cross-platform development and deployment.",
+    tech: ["React Native 0.76", "Expo 52", "TypeScript 5.3", "Expo Router 4", "React Navigation 7", "Expo Notifications", "DateTimePicker"],
+    features: [
+      "Cross-platform support for iOS, Android, and web with consistent user experience",
+      "Beautiful gradient color schemes with 6 customizable themes for visual organization",
+      "Push notification system with scheduled reminders for tasks and deadlines",
+      "Date-based checklist organization for planning daily, weekly, and future tasks",
+      "Intuitive task management with swipe gestures and haptic feedback",
+      "Multiple checklist categories including morning routines, work tasks, shopping lists, and weekend projects",
+      "Real-time task completion tracking with visual progress indicators",
+      "Smooth animations and transitions using React Native Reanimated",
+      "Safe area context handling for modern device screens and notches",
+      "File-based routing with Expo Router for scalable navigation architecture",
+    ],
+    metrics: {
+      "Platform": "iOS, Android, Web",
+      "Framework": "React Native",
+      "Build System": "Expo",
+    },
+  },
+  "daily-picking": {
+    title: "DAILY_PICKING",
+    category: "TEAM_MANAGEMENT",
+    description: "Daily meeting animator rotation system with smart absence handling and celebration animations",
+    longDescription:
+      "Daily Picking is an intelligent team rotation management system designed to fairly distribute daily meeting animation responsibilities. Built with Angular 19 and a Node.js backend, the application ensures every team member gets their turn before anyone repeats, while gracefully handling absences through a smart postponement system. When someone is absent, the system automatically moves to the next person while keeping track of the postponed member, ensuring they animate immediately after the substitute confirms. The application features engaging celebration animations with 100 confetti particles using anime.js to appreciate each participant's contribution. With MongoDB Atlas for data persistence, PM2 for process management, and Nginx with SSL, the application is production-ready and deployed at daily.bbprojet.dev.",
+    tech: ["Angular 19", "TypeScript 5.6", "Node.js 20", "Express 4", "MongoDB Atlas", "Mongoose", "PM2 6", "Nginx", "anime.js", "RxJS 7", "Let's Encrypt SSL"],
+    features: [
+      "Fixed-order rotation algorithm ensuring fair distribution and preventing repeats until everyone has participated",
+      "Smart postponement logic that remembers absent members and schedules them right after their substitute",
+      "Engaging celebration animations with 100 animated confetti particles to appreciate participation",
+      "Real-time MongoDB Atlas integration for persistent state management across sessions",
+      "Complete participant management with add, delete, activate/deactivate functionality",
+      "Comprehensive statistics tracking for each team member showing total, present, and absent counts",
+      "Beautiful gradient UI with purple accents and smooth animations throughout",
+      "Production deployment with PM2 process manager for automatic restarts and monitoring",
+      "Secure HTTPS with Let's Encrypt SSL certificates and Nginx reverse proxy",
+      "Responsive design optimized for desktop and mobile devices",
+    ],
+    metrics: {
+      "Framework": "Angular 19",
+      "Deployment": "Production (VPS)",
+      "Database": "MongoDB Atlas",
+    },
+    links: {
+      live: "https://daily.bbprojet.dev",
+    },
+  },
   "neural-commerce": {
     title: "NEURAL_COMMERCE",
     category: "E-COMMERCE",
@@ -185,17 +267,25 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             </div>
 
             <div className="flex gap-4">
-              <Button className="bg-neon-pink hover:bg-neon-pink/80 text-black font-mono font-bold neon-border-strong border-2 border-neon-pink hover:scale-105 transition-transform">
-                <ExternalLink className="h-4 w-4 mr-2" />
-                LIVE_DEMO
-              </Button>
-              <Button
-                variant="outline"
-                className="border-2 border-neon-blue text-neon-blue hover:bg-neon-blue/20 font-mono bg-black neon-border hover:scale-105 transition-transform font-bold"
-              >
-                <Github className="h-4 w-4 mr-2" />
-                VIEW_CODE
-              </Button>
+              {project.links?.live && (
+                <Link href={project.links.live} target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-neon-pink hover:bg-neon-pink/80 text-black font-mono font-bold neon-border-strong border-2 border-neon-pink hover:scale-105 transition-transform">
+                    <ExternalLink className="h-4 w-4 mr-2" />
+                    LIVE_DEMO
+                  </Button>
+                </Link>
+              )}
+              {project.links?.github && (
+                <Link href={project.links.github} target="_blank" rel="noopener noreferrer">
+                  <Button
+                    variant="outline"
+                    className="border-2 border-neon-blue text-neon-blue hover:bg-neon-blue/20 font-mono bg-black neon-border hover:scale-105 transition-transform font-bold"
+                  >
+                    <Github className="h-4 w-4 mr-2" />
+                    VIEW_CODE
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         </div>

@@ -4,12 +4,46 @@ import { ArrowRight } from "lucide-react"
 
 const projects = [
   {
+    id: "watchpact",
+    title: "WATCHPACT",
+    category: "SOCIAL_PLATFORM",
+    description: "Modern, responsive web application for creating, managing, and sharing movie and TV show watchlists with friends and family. Features comprehensive TMDB API integration, collaborative lists, Google OAuth authentication, and a beautiful dark/light theme system.",
+    tech: ["Angular 16", "TypeScript", "Firebase", "TMDB API", "Bootstrap 5", "RxJS", "Elf State Management"],
+    color: "neon-pink",
+    featured: true,
+    links: {
+      live: "https://bbprojet.dev",
+      github: "https://github.com/cafenombre/bbprojet",
+    },
+  },
+  {
+    id: "caracheck",
+    title: "CARACHECK",
+    category: "MOBILE_APP",
+    description: "Beautiful cross-platform mobile checklist and task management application built with React Native and Expo. Features customizable color schemes, push notifications, date-based organization, and an elegant gradient UI for managing daily routines, work tasks, and shopping lists.",
+    tech: ["React Native", "Expo", "TypeScript", "Push Notifications", "React Navigation", "Expo Router"],
+    color: "neon-blue",
+    featured: true,
+  },
+  {
+    id: "daily-picking",
+    title: "DAILY_PICKING",
+    category: "TEAM_MANAGEMENT",
+    description: "Daily meeting animator rotation system with smart absence handling and celebration animations. Features fixed-order rotation ensuring fair distribution, postponement logic for absent members, MongoDB persistence, and engaging confetti animations to celebrate participation.",
+    tech: ["Angular 19", "Node.js", "Express", "MongoDB Atlas", "PM2", "Nginx", "anime.js", "RxJS"],
+    color: "neon-purple",
+    featured: true,
+    links: {
+      live: "https://daily.bbprojet.dev",
+    },
+  },
+  {
     id: "neural-commerce",
     title: "NEURAL_COMMERCE",
     category: "E-COMMERCE",
     description: "AI-powered shopping platform with predictive analytics and personalized recommendations",
     tech: ["Next.js", "TensorFlow", "PostgreSQL"],
-    color: "neon-pink",
+    color: "neon-cyan",
   },
   {
     id: "quantum-dashboard",
@@ -17,23 +51,7 @@ const projects = [
     category: "DATA_VISUALIZATION",
     description: "Real-time analytics dashboard with quantum-inspired data processing algorithms",
     tech: ["React", "D3.js", "WebGL"],
-    color: "neon-blue",
-  },
-  {
-    id: "cyber-auth",
-    title: "CYBER_AUTH",
-    category: "SECURITY",
-    description: "Next-generation authentication system with biometric integration and zero-trust architecture",
-    tech: ["Node.js", "Redis", "WebAuthn"],
     color: "neon-cyan",
-  },
-  {
-    id: "synth-api",
-    title: "SYNTH_API",
-    category: "BACKEND",
-    description: "High-performance API gateway with intelligent routing and auto-scaling capabilities",
-    tech: ["Go", "Kubernetes", "gRPC"],
-    color: "neon-purple",
   },
 ]
 

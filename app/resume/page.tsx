@@ -1,6 +1,9 @@
+"use client"
+
 import { Navigation } from "@/components/navigation"
 import { Download, Mail, Github, Linkedin, Globe, MapPin, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { generateResumePDF } from "@/lib/generate-resume-pdf"
 
 export default function ResumePage() {
   return (
@@ -16,9 +19,12 @@ export default function ResumePage() {
                   <h1 className="text-5xl md:text-7xl font-bold font-orbitron mb-4">
                     <span className="text-neon-pink neon-text-strong">TRISTAN GLOTIN</span>
                   </h1>
-                  <p className="text-xl text-gray-400 font-mono">Développeur C# .NET</p>
+                  <p className="text-xl text-gray-200 font-mono">Développeur C# .NET</p>
                 </div>
-                <Button className="bg-neon-blue hover:bg-neon-blue/80 text-black font-mono font-bold neon-border-strong border-2 border-neon-blue hover:scale-105 transition-transform">
+                <Button
+                  onClick={generateResumePDF}
+                  className="bg-neon-blue hover:bg-neon-blue/80 text-black font-mono font-bold neon-border-strong border-2 border-neon-blue hover:scale-105 transition-transform"
+                >
                   <Download className="h-4 w-4 mr-2" />
                   DOWNLOAD_PDF
                 </Button>
@@ -75,7 +81,7 @@ export default function ResumePage() {
 
             <section className="mb-16">
               <h2 className="text-3xl font-bold font-orbitron mb-6 text-neon-blue neon-text">PROFIL</h2>
-              <p className="text-gray-400 leading-relaxed text-lg">
+              <p className="text-gray-200 leading-relaxed text-lg">
                 Développeur .NET bilingue français–anglais, passionné et polyvalent, avec une forte expertise dans le
                 développement backend et la création d'outils métiers sur mesure. Curieux et toujours en veille
                 technologique, j'aime concevoir des solutions fiables, élégantes et pérennes — en équipe comme en
@@ -122,14 +128,14 @@ export default function ResumePage() {
                   <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
                   <div className="relative z-10">
                     <span className="text-neon-pink font-bold">Français</span>
-                    <span className="text-gray-400"> — Natif</span>
+                    <span className="text-gray-200"> — Natif</span>
                   </div>
                 </div>
                 <div className="p-4 border-2 border-neon-pink/50 bg-black/50 font-mono text-sm hover:border-neon-cyan/70 hover:bg-neon-pink/5 transition-all relative overflow-hidden group">
                   <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
                   <div className="relative z-10">
                     <span className="text-neon-pink font-bold">Anglais</span>
-                    <span className="text-gray-400"> — Bilingue</span>
+                    <span className="text-gray-200"> — Bilingue</span>
                   </div>
                 </div>
               </div>
@@ -147,22 +153,22 @@ export default function ResumePage() {
                   </div>
                   <div className="text-lg text-neon-blue mb-4 font-mono">Stonal · Toulouse</div>
                   <ul className="space-y-2">
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>
                         Conception et développement d'add-ins Revit en C# (.NET 8) pour la numérisation et le contrôle
                         qualité de maquettes BIM
                       </span>
                     </li>
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Recueil des besoins, définition d'architectures logicielles et mise en production</span>
                     </li>
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Collaboration avec des équipes internationales (anglais quotidien)</span>
                     </li>
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Mise en place de bonnes pratiques de code et documentation technique</span>
                     </li>
@@ -176,25 +182,25 @@ export default function ResumePage() {
                   </div>
                   <div className="text-lg text-neon-blue mb-4 font-mono">Techform · Toulouse</div>
                   <ul className="space-y-2">
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Création d'API de modélisation 2D pour configurateurs sur mesure</span>
                     </li>
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>
                         Développement et maintenance de configurateurs métiers (fenêtres, portails, garde-corps…)
                       </span>
                     </li>
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Intégration ERP via Web Services (API REST)</span>
                     </li>
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Structuration d'architectures de données et optimisation multi-projets</span>
                     </li>
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Gestion d'équipe et pilotage via Azure DevOps</span>
                     </li>
@@ -208,11 +214,11 @@ export default function ResumePage() {
                   </div>
                   <div className="text-lg text-neon-blue mb-4 font-mono">Institut Vajra Yogini · Toulouse</div>
                   <ul className="space-y-2">
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Développement en autonomie d'une application calendrier en PHP Symfony</span>
                     </li>
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>
                         Gestion des réservations d'hébergements, réunions et conférences via un planning interactif
@@ -228,15 +234,15 @@ export default function ResumePage() {
                   </div>
                   <div className="text-lg text-neon-blue mb-4 font-mono">EB-Trans IT · Luxembourg</div>
                   <ul className="space-y-2">
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Maintenance et évolution d'une application interne (transport)</span>
                     </li>
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Gestion de fichiers automatisée et modules complémentaires</span>
                     </li>
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Expérience en AngularJS, MicroServices, .NET</span>
                     </li>
@@ -252,7 +258,7 @@ export default function ResumePage() {
                   </div>
                   <div className="text-lg text-neon-blue mb-4 font-mono">Goeres Group · Luxembourg</div>
                   <ul className="space-y-2">
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Développement d'intranet (gestion RH, réservations, inventaire)</span>
                     </li>
@@ -268,7 +274,7 @@ export default function ResumePage() {
                   </div>
                   <div className="text-lg text-neon-blue mb-4 font-mono">Creative Spread · Leeds (UK)</div>
                   <ul className="space-y-2">
-                    <li className="flex items-start gap-3 text-gray-400">
+                    <li className="flex items-start gap-3 text-gray-200">
                       <span className="text-neon-pink mt-1 font-bold">▹</span>
                       <span>Développement d'une application web de gestion de projets en C# .NET</span>
                     </li>
@@ -282,7 +288,7 @@ export default function ResumePage() {
               <div className="border-l-2 border-neon-pink/50 pl-6 hover:border-neon-pink transition-colors">
                 <h3 className="text-2xl font-bold font-orbitron text-neon-pink neon-text mb-2">WatchPact</h3>
                 <div className="text-lg text-neon-blue mb-2 font-mono">bbprojet.dev</div>
-                <p className="text-gray-400 mb-4 leading-relaxed">
+                <p className="text-gray-200 mb-4 leading-relaxed">
                   Conception d'une plateforme web et mobile de partage de listes de visionnage.
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -320,7 +326,7 @@ export default function ResumePage() {
                 ].map((interest) => (
                   <div
                     key={interest}
-                    className="p-4 border-2 border-neon-pink/50 bg-black/50 font-mono text-sm text-gray-400 hover:border-neon-cyan/70 hover:bg-neon-pink/5 transition-all relative overflow-hidden group"
+                    className="p-4 border-2 border-neon-pink/50 bg-black/50 font-mono text-sm text-gray-200 hover:border-neon-cyan/70 hover:bg-neon-pink/5 transition-all relative overflow-hidden group"
                   >
                     <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
                     <div className="relative z-10">{interest}</div>
