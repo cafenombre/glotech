@@ -2,11 +2,30 @@ import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Code, Terminal, Database, Server } from "lucide-react"
+import { localePath, type Locale } from "@/i18n/config"
+import { getDictionary } from "@/i18n/get-dictionary"
 
-export default function HomePage() {
+export default async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
+  const { locale } = await params
+  const dict = getDictionary(locale)
+  const t = dict.home
+
+  const services = [
+    { icon: Code, ...t.services.frontend, color: "neon-pink" },
+    { icon: Terminal, ...t.services.backend, color: "neon-blue" },
+    { icon: Database, ...t.services.data, color: "neon-cyan" },
+    { icon: Server, ...t.services.ops, color: "neon-purple" },
+  ]
+
+  const stats = [
+    { value: "5", label: t.stats.apps, color: "neon-pink" },
+    { value: "7", label: t.stats.domains, color: "neon-blue" },
+    { value: "1", label: t.stats.vps, color: "neon-cyan" },
+  ]
+
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+      <Navigation locale={locale} dict={dict} />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
@@ -19,38 +38,35 @@ export default function HomePage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <div className="inline-block px-6 py-2 border-2 border-neon-pink rounded-none mb-4 neon-border-subtle">
-              <span className="text-neon-pink font-sans text-sm neon-text-subtle tracking-wider">
-                NEXT-GEN DEVELOPMENT
-              </span>
+              <span className="text-neon-pink font-sans text-sm neon-text-subtle tracking-wider">{t.eyebrow}</span>
             </div>
 
             <h1 className="text-6xl md:text-8xl font-bold font-sans leading-tight tracking-tight">
-              <span className="text-neon-pink neon-text block">BUILDING</span>
-              <span className="text-neon-blue neon-text block">THE FUTURE</span>
+              <span className="text-neon-pink neon-text block">{t.titleLine1}</span>
+              <span className="text-neon-blue neon-text block">{t.titleLine2}</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-mono">
-              Full-stack developer. Angular and .NET on the front and back, MongoDB underneath, and everything shipped
-              to a Linux box I run myself: Docker, nginx, TLS and all.
+              {t.intro}
             </p>
 
             <div className="flex gap-4 justify-center pt-8">
-              <Link href="/projects">
+              <Link href={localePath(locale, "projects")}>
                 <Button
                   size="lg"
                   className="bg-neon-pink hover:bg-neon-pink/80 text-background font-sans font-bold neon-border group tracking-wide"
                 >
-                  VIEW PROJECTS
+                  {t.viewProjects}
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Link href="/resume">
+              <Link href={localePath(locale, "resume")}>
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-2 border-neon-blue text-neon-blue hover:bg-neon-blue/10 font-sans font-bold bg-transparent tracking-wide"
                 >
-                  RESUME
+                  {t.resume}
                 </Button>
               </Link>
             </div>
@@ -69,36 +85,11 @@ export default function HomePage() {
 
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold font-sans text-center mb-16 tracking-tight">
-            <span className="text-neon-blue neon-text">CORE_SYSTEMS</span>
+            <span className="text-neon-blue neon-text">{t.coreSystems}</span>
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: Code,
-                title: "FRONTEND",
-                desc: "Angular 16 to 19, React 19 and Next.js 16 in TypeScript. Standalone components, RxJS, Tailwind.",
-                color: "neon-pink",
-              },
-              {
-                icon: Terminal,
-                title: "BACKEND_APIS",
-                desc: ".NET 8 in C# and Node with Express. REST APIs, Google OAuth, token-based sharing, server-side authorisation.",
-                color: "neon-blue",
-              },
-              {
-                icon: Database,
-                title: "DATA_AND_SEARCH",
-                desc: "MongoDB with Mongoose and the .NET driver, scoped per-app database users, and self-hosted Meilisearch for typo-tolerant search.",
-                color: "neon-cyan",
-              },
-              {
-                icon: Server,
-                title: "DEPLOY_AND_OPS",
-                desc: "My own Debian VPS: Docker Compose, nginx, Let's Encrypt, PM2, systemd timers and nightly database backups.",
-                color: "neon-purple",
-              },
-            ].map((service, i) => (
+            {services.map((service, i) => (
               <div
                 key={i}
                 className="p-6 border-2 border-border bg-card hover:border-neon-pink hover:neon-border-subtle transition-all group relative overflow-hidden"
@@ -124,11 +115,7 @@ export default function HomePage() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-3 gap-12 max-w-4xl mx-auto">
-            {[
-              { value: "5", label: "APPS_IN_PRODUCTION", color: "neon-pink" },
-              { value: "7", label: "DOMAINS_OVER_HTTPS", color: "neon-blue" },
-              { value: "1", label: "VPS_I_RUN_MYSELF", color: "neon-cyan" },
-            ].map((stat, i) => (
+            {stats.map((stat, i) => (
               <div key={i} className="text-center">
                 <div className={`text-5xl md:text-6xl font-bold font-sans text-${stat.color} neon-text mb-2`}>
                   {stat.value}
@@ -150,16 +137,14 @@ export default function HomePage() {
             <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-neon-pink" />
 
             <h2 className="text-4xl md:text-5xl font-bold font-sans tracking-tight">
-              <span className="text-neon-pink neon-text">READY TO CONNECT?</span>
+              <span className="text-neon-pink neon-text">{t.ctaHeading}</span>
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed font-mono">
-              Let's build something extraordinary together. Reach out to discuss your next project.
-            </p>
+            <p className="text-xl text-muted-foreground leading-relaxed font-mono">{t.ctaText}</p>
             <Button
               size="lg"
               className="bg-neon-blue hover:bg-neon-blue/80 text-background font-sans font-bold neon-border tracking-wide"
             >
-              INITIATE_CONTACT
+              {t.ctaButton}
             </Button>
           </div>
         </div>
